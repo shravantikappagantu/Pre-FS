@@ -118,4 +118,30 @@ class test
         System.out.println(ans); 
     }
 }
+
+
+//Sir's solution 
+import java.util.*;
+
+class PairsinTeam 
+{
+    public int numIdenticalPairs(int[] jersey) 
+	{
+        int res = 0, count[] = new int[jersey.length+1];
+        for (int a: jersey) {
+            res += count[a]++;
+        }
+        return res;
+    }
+	
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int jersey[]=new int[n];
+		for(int i=0;i<n;i++)
+			jersey[i]=sc.nextInt();
+		System.out.println		(newPairsinTeam).numIdenticalPairs(jersey));
+	}
+}
 */
