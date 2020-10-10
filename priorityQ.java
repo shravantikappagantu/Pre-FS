@@ -31,32 +31,46 @@ Chota bheem selects, box-1 has 1 laddu and box-0 has 2 laddus eat 2 laddus, boxe
 Chota bheem selects, box-0 has 1 laddu and box-1 has 1 laddu eat 2 laddus, boxes becomes [1]
 Finally left with 1 box, box contains 1 laddu in it.
  */
- //Greedy, PriorityQueue
+
+
+//Greedy, PriorityQueue
+
 import java.util.*;
 class priorityQ
 {
     public static void main(String args[])
     {
         Scanner sc = new Scanner(System.in);
-        String s=sc.nextLine();
-        int l[]=Arrays.stream(s.split(" ")).mapToInt(Integer::valueOf).toArray();
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder()); 
-
-        for(int i=0;i<l.length;i++)        
-            pq.add(l[i]);        
-
-        int max1,max2;        
-        while(pq.size()>1)
+        String in[] = sc.nextLine().split(" ");
+        int arr[] = Arrays.stream(in).mapToInt(Integer::parseInt).toArray();
+        
+        PriorityQueue<Integer> p = new PriorityQueue<Integer>(Collections.reverseOrder());
+        for(int k=0; k<arr.length;k++)
         {
-            max1=pq.poll();
-            max2=pq.poll();
-            if(max1!=max2)            
-                pq.add(max1-max2);             
+            p.add(arr[k]);
         }
-
-        if(pq.size()>0)
-        System.out.println(pq.peek());
+        while(!p.isEmpty())
+        {
+            if(p.size()==1)
+            {
+                break;
+            }
+            int i = p.poll();
+            int j = p.poll();
+            if (i-j>0)
+            {
+                p.add(i-j);
+            }
+        }
+        
+        if(p.isEmpty())
+        {
+            System.out.println(0);
+        }
         else
-        System.out.println(0);
+        {
+            System.out.println(p.peek());
+               
+        }
     }
-} 
+}
